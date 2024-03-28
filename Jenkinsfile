@@ -1,10 +1,13 @@
 pipeline {
     agent any
-
+    
     stages {
-        stage('Hello') {
+        stage('Build Stage') {
+            when {
+                changelog 'Build'
+            }
             steps {
-                echo 'Hello World'
+                echo "Yes, changelog contains 'Build' string"
             }
         }
     }
