@@ -1,8 +1,12 @@
+//Add Comments
 pipeline {
     agent any
     
     parameters {
         booleanParam(name: 'DEPLOY_ARTIFACT', defaultValue: false, description: 'Deploy Artifact')
+    }
+    environment {
+        SEARCH_STRING='comment'
     }
     triggers {
         pollSCM('* * * * *')
@@ -19,10 +23,7 @@ pipeline {
         }
         stage('Deploy Artifact') {
             when {
-                allOf {
-                    expression { params.DEPLOY_ARTIFACT }
-                    expression { env.GIT_BRANCH.contains('main') }
-                }
+                expression { readFile('Jenkinsfile').toLowerCase().contains("${SEARCH_STRING}") }
             }
             steps {
                 echo "Deploy the artifact"
