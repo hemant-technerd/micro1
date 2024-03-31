@@ -26,7 +26,6 @@ pipeline {
             }
         }
         stage('Execute Steps') {
-            stage {
                 when {
                     expression {
                         msgString.contains(SEARCH_STR)
@@ -38,4 +37,3 @@ pipeline {
             }
         }
     }
-}
