@@ -4,7 +4,9 @@ pipeline {
     parameters {
         string(name: 'SEARCH_STR', defaultValue: 'Jenkinsfile', description: 'Search string in commit msg')
     }
-    
+    triggers {
+        pollSCM('* * * * *')
+    }
     stages {
         stage('Change Log Set') {
             steps {
