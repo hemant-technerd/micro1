@@ -21,7 +21,7 @@ pipeline {
             when {
                 anyOf {
                     expression { params.DEPLOY_ARTIFACT }
-                    branch 'main'
+                    expression { env.GIT_BRANCH.contains('main') }
                 }
             }
             steps {
