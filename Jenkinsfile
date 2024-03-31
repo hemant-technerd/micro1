@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy Artifact') {
             when {
-                anyOf {
+                allOf {
                     expression { params.DEPLOY_ARTIFACT }
                     expression { env.GIT_BRANCH.contains('main') }
                 }
