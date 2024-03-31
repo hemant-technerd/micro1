@@ -23,16 +23,15 @@ pipeline {
                             msgString += entry.msg
                         }
                     }
-                    sh 'echo msgString > changeLog.txt'
-                    echo "MsgString: ${msgString}"
+                    env.msgString=msgString
+                    echo "MsgString: ${env.msgString}"
                 }
             }
         }
         stage('Execute Steps') {
                 steps {
                     script {
-                        def readVar = readFile('changeLog.txt').trim()
-                        if (readVar.contains(params.SEARCH_STR)) {
+                        if (env.msgString.contains(params.SEARCH_STR)) {
                             echo "Search string  found in commit message"
                         }
                     }
