@@ -33,7 +33,7 @@ pipeline {
         stage('Execute Steps') {
                 when {
                     expression {
-                        msgString.contains(params.SEARCH_STR)
+                        env.msgString.contains(params.SEARCH_STR)
                     }
                 }
                 steps {
