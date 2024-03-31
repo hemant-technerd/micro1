@@ -32,9 +32,9 @@ pipeline {
                 steps {
                     script {
                         if (env.msgString.contains(params.SEARCH_STR)) {
-                            echo "Search string  found in commit message"
+                            echo "Search string found in commit message"
                         } else {
-                            echo "Search string  found in commit message"
+                            echo "Search string not found in commit message"
                         }
                     }
                 }
