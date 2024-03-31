@@ -4,6 +4,9 @@ pipeline {
     parameters {
         booleanParam(name: 'DEPLOY_ARTIFACT', defaultValue: false, description: 'Deploy Artifact')
     }
+    triggers {
+        pollSCM('* * * * *')
+    }
     
     stages {
         stage('Deploy Artifact') {
