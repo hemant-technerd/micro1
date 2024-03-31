@@ -1,34 +1,20 @@
 pipeline {
     agent any
     
-    environment {
-        FILE_TO_SEARCH='Jenkinsfile'
+    parameters {
+        booleanParam(name: 'DEPLOY_ARTIFACT', defaultValue: false, description: 'Deploy Artifact')
     }
     
     stages {
-        stage('ChangeSet File Type') {
-            steps {
-                script {
-                    def affectedJenkinsFile=''
-                    for (changeSet in currentBuild.changeSets) {
-                        for (item in changeSet.items) {
-                            for (affectedFile in item.affectedFiles) {
-                                echo "Affected File: ${affectedFile.path}"
-                                if (affectedFile.path.contains(env.FILE_TO_SEARCH)) {
-                                    env.FILE_PRESENT='true'
-                                }
-                            }
-                        }
-                    }
+        stage('Deploy Artifact') {
+            when {
+                anyOf {
+                    expression { params.DEPLOY_ARTIFACT }
+                    branch 'main'
                 }
             }
-        }
-        stage('Perform Build') {
-            when {
-                expression { env.FILE_PRESENT='true' }
-            }
             steps {
-                echo "Building Project..."
+                echo "Deploy the artifact"
             }
         }
     }
