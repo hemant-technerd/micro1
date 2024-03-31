@@ -33,6 +33,8 @@ pipeline {
                     script {
                         if (env.msgString.contains(params.SEARCH_STR)) {
                             echo "Search string  found in commit message"
+                        } else {
+                            echo "Search string  found in commit message"
                         }
                     }
                 }
