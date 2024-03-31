@@ -23,7 +23,7 @@ pipeline {
                             msgString += entry.msg
                         }
                     }
-                    env.msgString=msgString
+                    env.msgString=msgString   //msgString is env variable and local variable too.
                     echo "MsgString: ${env.msgString}"
                 }
             }
