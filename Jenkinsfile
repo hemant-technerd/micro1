@@ -24,7 +24,7 @@ pipeline {
                         for(j=0; j<entries.size(); j++) {
                             def entry=entries[j]
                             echo "${entry.commitId} by ${entry.author}: ${entry.msg}"
-                            ${msgString} = ${msgString} + "${entry.msg}"
+                            "${msgString}" = "${msgString}" + "${entry.msg}"
                         }
                     }
                 }
