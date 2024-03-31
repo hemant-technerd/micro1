@@ -12,6 +12,11 @@ pipeline {
     }
     
     stages {
+        stage('Git Branch') {
+            steps {
+                echo "Git Branch: ${GIT_BRANCH}"
+            }
+        }
         stage('Deploy Artifact') {
             when {
                 anyOf {
