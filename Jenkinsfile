@@ -27,6 +27,7 @@ pipeline {
                             env.msgString += entry.msg
                         }
                     }
+                    echo "${env.msgString}"
                 }
             }
         }
