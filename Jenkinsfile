@@ -4,9 +4,7 @@ pipeline {
     
     parameters {
         booleanParam(name: 'DEPLOY_ARTIFACT', defaultValue: false, description: 'Deploy Artifact')
-    }
-    environment {
-        SEARCH_STRING='comment'
+        string(name: 'SEARCH_STRING', defaultValue: 'hello', description: 'Search string in Jenkinsfile')
     }
     triggers {
         pollSCM('* * * * *')
@@ -23,7 +21,7 @@ pipeline {
         }
         stage('Deploy Artifact') {
             when {
-                expression { readFile('Jenkinsfile').toLowerCase().contains("${SEARCH_STRING}") }
+                expression { readFile('Jenkinsfile').toLowerCase().contains(params.SEARCH_STRING) }
             }
             steps {
                 echo "Deploy the artifact"
