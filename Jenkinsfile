@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'SEARCH_STR', defaultValue: 'Jenkinsfile', description: 'Search string in commit msg')
     }
-    environent {
+    environment {
         msgString=''
     }
     triggers {
@@ -24,7 +24,7 @@ pipeline {
                         for(j=0; j<entries.size(); j++) {
                             def entry=entries[j]
                             echo "${entry.commitId} by ${entry.author}: ${entry.msg}"
-                            "${msgString}" = "${msgString}" + "${entry.msg}"
+                            env.msgString += entry.msg
                         }
                     }
                 }
